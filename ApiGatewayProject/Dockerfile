@@ -4,7 +4,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 RUN mvn clean install
-FROM openjdk:21-jdk
+FROM amazoncorretto:21-alpine
 WORKDIR /app
 COPY --from=build /app/target/ApiGatewayProject-0.0.1-SNAPSHOT.jar /app/UserService-0.0.1-SNAPSHOT.jar
 CMD ["java", "-jar", "/app/UserService-0.0.1-SNAPSHOT.jar"]
