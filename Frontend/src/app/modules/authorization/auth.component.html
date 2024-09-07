@@ -1,0 +1,62 @@
+
+<div class="d-flex justify-content-center">
+  <div style="width: 30%; margin-top: 20vh">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="home" aria-selected="true">Login</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#registration" type="button" role="tab" aria-controls="profile" aria-selected="false">Registration</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row g-3 p-2">
+          <div class="col-md-qw">
+            <label>Email</label>
+            <input type="text" class="form-control" [(ngModel)]="loginParams.email">
+          </div>
+          <div class="col-md-qw">
+            <label>Password</label>
+            <input type="password" class="form-control" [(ngModel)]="loginParams.password">
+          </div>
+          <div class="col-md-12" style="display: flex; justify-content: center">
+            <button class="btn btn-primary" (click)="login()">Login</button>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="registration" role="tabpanel" aria-labelledby="profile-tab">
+        <form #registerform=ngForm>
+          <fieldset>
+            <div class="row g-3 p-2">
+              <div class="col-md-qw">
+                <label>Firstname</label>
+                <input id="firstname" name="firstname" type="text" class="form-control" [(ngModel)]="registerParams.firstname">
+              </div>
+              <div class="col-md-qw">
+                <label>Lastname</label>
+                <input id="lastname" name="lastname" type="text" class="form-control" [(ngModel)]="registerParams.lastname">
+              </div>
+              <div class="col-md-qw">
+                <label>Role</label>
+                <ng-select id="role" name="role" [required]="true" [items]="roles" [(ngModel)]="registerParams.role"
+                           bindLabel="name" bindValue="id" [clearable]="false"></ng-select>
+              </div>
+              <div class="col-md-qw">
+                <label>Email</label>
+                <input id="email" name="email" [placeholder]="'example@domain.com'" type="text" class="form-control" [(ngModel)]="registerParams.email">
+              </div>
+              <div class="col-md-qw">
+                <label>Password</label>
+                <input id="newpassword" name="newpassword" type="password" class="form-control" [(ngModel)]="registerParams.password">
+              </div>
+              <div class="col-md-12" style="display: flex; justify-content: center">
+                <button [disabled]="registerform.invalid || !isValidEmailAddress(registerParams.email)" class="btn btn-primary" (click)="register()">Register</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

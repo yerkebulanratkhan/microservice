@@ -1,0 +1,35 @@
+<div class="m-4">
+  <div class="d-flex justify-content-between">
+    <h2 class="mt-4">My profile</h2>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div style="width: 30%;">
+      <form #registerform=ngForm>
+        <fieldset>
+          <div class="row g-3 p-2">
+            <div class="col-md-qw">
+              <label>Firstname</label>
+              <input id="firstname" [required]="true" name="firstname" type="text" class="form-control" [(ngModel)]="userParams.firstname">
+            </div>
+            <div class="col-md-qw">
+              <label>Lastname</label>
+              <input id="lastname" [required]="true" name="lastname" type="text" class="form-control" [(ngModel)]="userParams.lastname">
+            </div>
+            <div class="col-md-qw">
+              <label>Role</label>
+              <ng-select id="role" name="role" [required]="true" [items]="roles" [(ngModel)]="userParams.role" [disabled]="true"
+                         bindLabel="name" bindValue="id" [clearable]="false"></ng-select>
+            </div>
+            <div class="col-md-qw">
+              <label>Email</label>
+              <input [disabled]="true" id="email" name="email" type="text" class="form-control" [(ngModel)]="userParams.email">
+            </div>
+            <div class="col-md-12" style="display: flex; justify-content: center">
+              <button [disabled]="registerform.invalid" class="btn btn-primary" (click)="save()">Save</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

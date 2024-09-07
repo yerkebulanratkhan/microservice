@@ -1,0 +1,15 @@
+<header class="site-header">
+  <div class="site-identity">
+    <h1><a href="#/main/profile">Test assignment</a></h1>
+  </div>
+  <nav class="site-navigation">
+    <ul class="nav">
+      <li *ngIf="isSeller"><a href="#/main/items">Items</a></li>
+      <li *ngIf="isCustomer"><a href="#/main/shopping">Shopping</a></li>
+      <li *ngIf="isCustomer"><a href="#/main/orders">My orders</a></li>
+      <li><a href="#/main/profile">My Profile</a></li>
+      <li><a href="" (click)="logout()">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+<router-outlet></router-outlet>

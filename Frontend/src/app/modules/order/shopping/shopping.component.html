@@ -1,0 +1,80 @@
+<div class="m-4">
+  <div class="d-flex justify-content-between">
+    <h2 class="mt-4">Shopping</h2>
+    <div style="display: flex">
+      <a href="" data-bs-toggle="modal" data-bs-target="#cartModal">
+        <i class="bx bx-cart add" style="font-size: 50px"></i>
+      </a>
+      <div>
+        <span class="badge rounded-pill bg-danger" style="font-size: 14px">{{getItemCount()}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row g-3">
+    <table class="table table-responsive">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <td>Category</td>
+        <th>Price</th>
+        <th>Add to cart</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.category.name}}</td>
+        <td>{{item.price}}</td>
+        <td>
+          <i class="bx bx-plus-medical add" (click)="addItem(item)"></i>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-responsive">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th width="30%">Quantity</th>
+            <th>Sum</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of newOrder.items">
+            <td>{{item.item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>
+              <input type="number" [(ngModel)]="item.quantity" class="form-control">
+            </td>
+            <td>{{item.price * item.quantity}}</td>
+          </tr>
+          <tr>
+            <td>Total Sum:</td><td></td><td></td>
+            <td>{{getSum()}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <div style="display: flex; justify-content: space-between; width: 100%">
+          Total items: {{getItemCount()}}
+          <button type="button" [disabled]="getItemCount() == 0" class="btn btn-primary" (click)="save()">Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

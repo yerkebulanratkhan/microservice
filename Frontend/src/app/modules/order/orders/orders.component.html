@@ -1,0 +1,71 @@
+<div class="m-4">
+  <div class="d-flex justify-content-between">
+    <h2 class="mt-4">My orders</h2>
+  </div>
+  <div class="row g-3">
+    <table class="table table-responsive">
+      <thead>
+      <tr>
+        <th>Order №</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Sum</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{order.id}}</td>
+        <td>{{order.date | date: 'dd-MM-yyyy hh:mm'}}</td>
+        <td>{{'Ожидает'}}</td>
+        <td>{{getSum(order)}}</td>
+        <td>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cartModal" (click)="details(order)">Details</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Order №{{order.id}} details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-responsive">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th width="30%">Quantity</th>
+            <th>Sum</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of order.items">
+            <td>{{item.item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.price * item.quantity}}</td>
+          </tr>
+          <tr>
+            <td>Total Sum:</td><td></td><td></td>
+            <td>{{getSum(order)}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <div style="display: flex; justify-content: space-between; width: 100%">
+          Total items: {{getItemCount()}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
