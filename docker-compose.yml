@@ -1,0 +1,82 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5433:5432"
+    networks:
+      - microservice-network
+  userservice:
+    image: userservice
+    build:
+      context: ./UserService
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 123456
+    depends_on:
+      - postgres
+    expose:
+      - "8092"
+    networks:
+      - microservice-network
+  apigateway:
+    image: apigateway
+    build:
+      context: ./ApiGatewayProject
+    depends_on:
+      - userservice
+      - itemsservice
+      - orderservice
+    ports:
+      - "8080:8080"
+    networks:
+      - microservice-network
+  itemsservice:
+    image: itemsservice
+    build:
+      context: ./ItemsService
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 123456
+    depends_on:
+      - postgres
+      - userservice
+    expose:
+      - "8089"
+    networks:
+      - microservice-network
+  orderservice:
+    image: orderservice
+    build:
+      context: ./OrderService
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 123456
+    depends_on:
+      - postgres
+      - userservice
+      - itemsservice
+    expose:
+      - "8090"
+    networks:
+      - microservice-network
+  angular:
+    image: angular
+    build:
+      context: ./Frontend
+    depends_on:
+      - apigateway
+    ports:
+      - "4200:4200"
+    networks:
+      - microservice-network
+
+networks:
+  microservice-network:
+    driver: bridge

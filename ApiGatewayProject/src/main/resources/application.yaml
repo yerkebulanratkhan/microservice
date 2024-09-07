@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: ApiGateWay
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - POST
+              - GET
+              - OPTIONS
+              - POST
+              - DELETE
+      routes:
+        - id: userservice
+          uri: http://userservice:8092
+          filters:
+            - PrefixPath=/api
+          predicates:
+            - Path=/user/**, /auth/**
+        - id: itemsservice
+          uri: http://itemsservice:8089
+          filters:
+            - PrefixPath=/api
+          predicates:
+            - Path=/item/**
+        - id: orderservice
+          uri: http://orderservice:8090
+          filters:
+            - PrefixPath=/api
+          predicates:
+            - Path=/order/**
