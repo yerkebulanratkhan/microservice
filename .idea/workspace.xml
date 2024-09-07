@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59937e32-f6eb-4a23-9fa7-f8c41f631ac5" name="Changes" comment="commit" />
+    <list default="true" id="59937e32-f6eb-4a23-9fa7-f8c41f631ac5" name="Changes" comment="commit">
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -200,7 +202,7 @@
       <workItem from="1725718275989" duration="1037000" />
       <workItem from="1725719371234" duration="178000" />
       <workItem from="1725719760420" duration="281000" />
-      <workItem from="1725720068223" duration="293000" />
+      <workItem from="1725720068223" duration="1077000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -338,7 +340,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725720232793</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="commit">
+      <option name="closed" value="true" />
+      <created>1725720554029</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1725720554029</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
