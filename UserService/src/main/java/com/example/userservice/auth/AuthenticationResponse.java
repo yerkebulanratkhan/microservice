@@ -1,5 +1,6 @@
 package com.example.userservice.auth;
 
+import com.example.userservice.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,4 +15,6 @@ public class AuthenticationResponse {
 
     @JsonProperty("token")
     private String token;
+    private Role role;
+    private Boolean created;
 }
